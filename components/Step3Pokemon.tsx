@@ -66,7 +66,7 @@ export default function Step3Pokemon() {
         <h2 className="font-bangers text-3xl md:text-4xl text-dark tracking-wide">
           Pick Your Favorite Pokémon
         </h2>
-        <p className="text-gray-500 font-nunito text-sm mt-1">Who's your forever NO.1?</p>
+        <p className="text-gray-500 font-nunito text-sm mt-1">Who&apos;s your forever NO.1?</p>
       </div>
 
       {/* Type tabs */}

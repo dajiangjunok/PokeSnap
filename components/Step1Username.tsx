@@ -46,7 +46,7 @@ export default function Step1Username() {
         Enter your Twitter handle
         </h2>
         <p className="text-gray-500 font-nunito text-sm mt-1">
-          We'll grab your profile picture as the base
+          We&apos;ll grab your profile picture as the base
         </p>
       </div>
 
