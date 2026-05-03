@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useAtom } from 'jotai'
 import {
   stepAtom, generatedImageAtom, isGeneratingAtom,
@@ -34,7 +35,9 @@ export default function Step4Result() {
   if (isGenerating) {
     return (
       <div className="card p-8 animate-pop-in text-center">
-        <div className="text-7xl mb-4 animate-bounce inline-block">⚾</div>
+        <div className="mb-4 animate-bounce inline-block">
+          <Image src="/pokeball.svg" alt="Pokéball" width={80} height={80} />
+        </div>
         <h2 className="font-bangers text-3xl md:text-4xl text-dark mb-2 tracking-wide">
           AI is cooking...
         </h2>
