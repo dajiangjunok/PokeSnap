@@ -8,11 +8,11 @@ import {
 } from '@/store/atoms'
 import { getPokemonByType, getPokemonImageUrl, type PokemonType } from '@/lib/pokemon'
 
-const TABS: { type: PokemonType; label: string; emoji: string; bg: string; active: string; text: string }[] = [
-  { type: 'grass',  label: 'Grass',  emoji: '🌿', bg: '#fff', active: '#D8F3DC', text: '#2D6A4F' },
-  { type: 'fire',   label: 'Fire',   emoji: '🔥', bg: '#fff', active: '#FFE8E0', text: '#C1440E' },
-  { type: 'water',  label: 'Water',  emoji: '💧', bg: '#fff', active: '#D6EAF8', text: '#1B4F72' },
-  { type: 'random', label: 'All-Star', emoji: '✨', bg: '#fff', active: '#F3E8FF', text: '#6B2FA0' },
+const TABS: { type: PokemonType; label: string; emoji: string; active: string; text: string }[] = [
+  { type: 'grass',  label: 'Grass',   emoji: '🌿', active: '#D8F3DC', text: '#2D6A4F' },
+  { type: 'fire',   label: 'Fire',    emoji: '🔥', active: '#FFE8E0', text: '#C1440E' },
+  { type: 'water',  label: 'Water',   emoji: '💧', active: '#D6EAF8', text: '#1B4F72' },
+  { type: 'random', label: 'All-Star',emoji: '✨', active: '#F3E8FF', text: '#6B2FA0' },
 ]
 
 export default function Step3Pokemon() {
@@ -62,11 +62,11 @@ export default function Step3Pokemon() {
   return (
     <div className="card p-6 md:p-8 animate-pop-in">
       <div className="text-center mb-5">
-        <div className="text-5xl mb-3 animate-float inline-block">🎯</div>
+        <div className="text-5xl mb-3 animate-float inline-block">🌸</div>
         <h2 className="font-bangers text-3xl md:text-4xl text-dark tracking-wide">
           Pick Your Favorite Pokémon
         </h2>
-        <p className="text-gray-500 font-nunito text-sm mt-1">Who&apos;s your forever NO.1?</p>
+        <p className="text-dark/50 font-nunito font-semibold text-sm mt-1">Who&apos;s your forever NO.1?</p>
       </div>
 
       {/* Type tabs */}
@@ -75,13 +75,17 @@ export default function Step3Pokemon() {
           <button
             key={tab.type}
             onClick={() => setActiveTab(tab.type)}
-            className="flex-1 py-2.5 px-1 rounded-xl border-2 border-dark font-bangers text-sm transition-all duration-200"
+            className="flex-1 py-2.5 px-1 rounded-2xl font-nunito font-bold text-sm transition-all duration-200"
             style={{
-              border: '2.5px solid #1a1a2e',
-              background: activeTab === tab.type ? tab.active : tab.bg,
-              color: activeTab === tab.type ? tab.text : '#888',
-              boxShadow: activeTab === tab.type ? '2px 2px 0 #1a1a2e' : '3px 3px 0 #1a1a2e',
-              transform: activeTab === tab.type ? 'translate(1px,1px)' : '',
+              border: activeTab === tab.type
+                ? '1.5px solid rgba(255, 145, 186, 0.50)'
+                : '1.5px solid rgba(0, 0, 0, 0.07)',
+              background: activeTab === tab.type ? tab.active : 'rgba(255,255,255,0.70)',
+              color: activeTab === tab.type ? tab.text : '#B8A8C8',
+              boxShadow: activeTab === tab.type
+                ? '0 4px 12px rgba(255, 105, 157, 0.18)'
+                : '0 1px 4px rgba(0,0,0,0.04)',
+              transform: activeTab === tab.type ? 'translateY(-1px)' : '',
             }}
           >
             <span className="mr-1">{tab.emoji}</span>
@@ -98,16 +102,16 @@ export default function Step3Pokemon() {
             <button
               key={pokemon.id}
               onClick={() => setSelected(pokemon)}
-              className={`
-                relative p-2 rounded-2xl border-2 text-center transition-all duration-150
-                ${isSelected
-                  ? 'scale-95 border-dark'
-                  : 'border-gray-200 hover:border-dark hover:scale-95'
-                }
-              `}
+              className="relative p-2 rounded-2xl text-center transition-all duration-150 hover:scale-95"
               style={{
-                background: isSelected ? activeTabMeta.active : '#fafafa',
-                boxShadow: isSelected ? '2px 2px 0 #1a1a2e' : 'none',
+                background: isSelected ? activeTabMeta.active : 'rgba(255,255,255,0.70)',
+                boxShadow: isSelected
+                  ? '0 4px 14px rgba(255,105,157,0.20)'
+                  : '0 1px 4px rgba(0,0,0,0.05)',
+                border: isSelected
+                  ? '1.5px solid rgba(255, 145, 186, 0.50)'
+                  : '1.5px solid rgba(0,0,0,0.06)',
+                transform: isSelected ? 'scale(0.95)' : '',
                 animationDelay: `${idx * 0.04}s`,
               }}
             >
@@ -117,14 +121,17 @@ export default function Step3Pokemon() {
                 className="w-14 h-14 mx-auto object-contain"
                 loading="lazy"
               />
-              <div className="font-bangers text-[11px] text-dark leading-tight mt-1">
+              <div className="font-nunito font-bold text-[11px] text-dark leading-tight mt-1">
                 {pokemon.nameEn}
               </div>
-              <div className="text-[9px] text-gray-400 font-nunito">
+              <div className="text-[9px] text-dark/40 font-nunito">
                 #{String(pokemon.id).padStart(3, '0')}
               </div>
               {isSelected && (
-                <div className="absolute -top-1.5 -right-1.5 bg-pokeyellow border-2 border-dark rounded-full w-5 h-5 flex items-center justify-center text-[10px] font-bold animate-bounce-in">
+                <div
+                  className="absolute -top-1.5 -right-1.5 rounded-full w-5 h-5 flex items-center justify-center text-[10px] font-bold text-white animate-bounce-in"
+                  style={{ background: 'linear-gradient(135deg, #FF9BC3, #B89FF8)' }}
+                >
                   ♥
                 </div>
               )}
@@ -135,7 +142,13 @@ export default function Step3Pokemon() {
 
       {/* Selected preview */}
       {selected && (
-        <div className="mt-3 p-3 rounded-xl border-2 border-yellow-300 bg-yellow-50 flex items-center gap-3 animate-slide-up">
+        <div
+          className="mt-3 p-3 rounded-2xl flex items-center gap-3 animate-slide-up"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255,155,195,0.10), rgba(184,159,248,0.12))',
+            border: '1.5px solid rgba(255, 145, 186, 0.32)',
+          }}
+        >
           <img
             src={getPokemonImageUrl(selected.id)}
             alt={selected.nameEn}
@@ -143,23 +156,23 @@ export default function Step3Pokemon() {
           />
           <div className="flex-1">
             <div className="font-bangers text-xl text-dark leading-tight">{selected.nameEn}</div>
-            <div className="text-xs text-gray-500 font-nunito">
+            <div className="text-xs text-dark/50 font-nunito font-semibold">
               #{String(selected.id).padStart(3, '0')}
               {selected.generation ? ` · Gen ${selected.generation}` : ''}
             </div>
           </div>
-          <span className="text-2xl animate-float">♥</span>
+          <span className="text-2xl animate-float">💕</span>
         </div>
       )}
 
       <div className="flex gap-3 mt-4">
-        <button onClick={() => setStep(1)} className="btn-ghost px-5 py-3 text-xl">
+        <button onClick={() => setStep(1)} className="btn-ghost px-5 py-3 text-base">
           ← Back
         </button>
         <button
           onClick={handleGenerate}
           disabled={!selected}
-          className="btn-red flex-1 py-3 text-2xl"
+          className="btn-red flex-1 py-3 text-base"
         >
           🎨 Generate!
         </button>

@@ -42,17 +42,18 @@ export default function Step1Username() {
   return (
     <div className="card p-6 md:p-8 animate-pop-in">
       <div className="text-center mb-6">
-        <h2 className="font-bangers text-3xl md:text-4xl text-dark tracking-wide items-center flex ">
-        Enter your Twitter handle
+        <div className="text-4xl mb-2 animate-float inline-block">🐦</div>
+        <h2 className="font-bangers text-3xl md:text-4xl text-dark tracking-wide">
+          Enter your Twitter handle
         </h2>
-        <p className="text-gray-500 font-nunito text-sm mt-1">
+        <p className="text-dark/50 font-nunito font-semibold text-sm mt-1">
           We&apos;ll grab your profile picture as the base
         </p>
       </div>
 
       <div className="flex gap-2 mb-2">
         <div className="flex-1 relative">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-lg select-none">
+          <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-pokepink font-bold text-lg select-none">
             @
           </span>
           <input
@@ -61,30 +62,43 @@ export default function Step1Username() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handlePreview()}
             placeholder="pokemonmaster"
-            className="w-full pl-9 pr-4 py-3.5 border-3 border-dark rounded-xl font-nunito text-dark text-lg focus:outline-none focus:ring-2 focus:ring-pokeyellow transition-all"
-            style={{ border: '3px solid #1a1a2e', boxShadow: '3px 3px 0 #1a1a2e' }}
+            className="w-full pl-9 pr-4 py-3.5 rounded-2xl font-nunito font-semibold text-dark text-lg focus:outline-none focus:ring-2 focus:ring-pokepink/40 transition-all"
+            style={{
+              border: '1.5px solid rgba(255, 145, 186, 0.40)',
+              boxShadow: '0 2px 8px rgba(255, 105, 157, 0.08)',
+              background: 'rgba(255, 255, 255, 0.9)',
+            }}
           />
         </div>
         <button
           onClick={handlePreview}
           disabled={loading || !input.trim()}
-          className="btn-yellow px-5 py-3 text-xl"
+          className="btn-yellow px-5 py-3 text-base"
         >
-          {loading ? '...' : 'Fetch'}
+          {loading ? '...' : 'Fetch ✨'}
         </button>
       </div>
 
       {error && (
-        <p className="text-red-500 font-nunito text-sm mb-3 animate-slide-up">{error}</p>
+        <p className="text-pokered font-nunito font-semibold text-sm mb-3 animate-slide-up">{error}</p>
       )}
 
       {preview && (
         <div className="mt-5 animate-pop-in">
-          <div className="flex flex-col items-center gap-3 p-5 bg-yellow-50 rounded-xl border-2 border-yellow-300">
+          <div
+            className="flex flex-col items-center gap-3 p-5 rounded-2xl"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255,155,195,0.10), rgba(184,159,248,0.10))',
+              border: '1.5px solid rgba(255, 145, 186, 0.30)',
+            }}
+          >
             <div className="relative">
               <div
-                className="w-24 h-24 rounded-full overflow-hidden border-3 border-dark"
-                style={{ border: '3.5px solid #1a1a2e', boxShadow: '4px 4px 0 #1a1a2e' }}
+                className="w-24 h-24 rounded-full overflow-hidden"
+                style={{
+                  border: '2.5px solid rgba(255, 107, 168, 0.55)',
+                  boxShadow: '0 4px 20px rgba(255, 107, 168, 0.22)',
+                }}
               >
                 <img
                   src={preview}
@@ -93,20 +107,23 @@ export default function Step1Username() {
                   onError={() => setError('Failed to load avatar — please check the username')}
                 />
               </div>
-              <div className="absolute -bottom-1 -right-1 bg-pokeyellow border-2 border-dark rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">
+              <div
+                className="absolute -bottom-1 -right-1 rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold text-white"
+                style={{ background: 'linear-gradient(135deg, #FF9BC3, #B89FF8)' }}
+              >
                 ✓
               </div>
             </div>
-            <p className="font-nunito text-gray-600 text-sm font-semibold">
+            <p className="font-nunito text-dark/60 text-sm font-bold">
               @{input.replace('@', '').trim()}
             </p>
           </div>
 
           <button
             onClick={() => setStep(2)}
-            className="btn-yellow w-full py-4 mt-4 text-2xl"
+            className="btn-yellow w-full py-4 mt-4 text-lg"
           >
-            Pick a Pokémon →
+            Pick a Pokémon 🌸
           </button>
         </div>
       )}
