@@ -6,6 +6,7 @@ import StepIndicator from '@/components/StepIndicator'
 import Step1Username from '@/components/Step1Username'
 import Step3Pokemon from '@/components/Step3Pokemon'
 import Step4Result from '@/components/Step4Result'
+import Image from 'next/image'
 
 export default function Home() {
   const [step] = useAtom(stepAtom)
@@ -22,7 +23,7 @@ export default function Home() {
       <div className="relative z-10 w-full max-w-lg flex flex-col items-center gap-6">
         {/* Header */}
         <div className="text-center flex items-center">
-            <img src="/logo.gif" alt="monad" width="50px" className='mr-2' /> 
+            <Image src="/logo.gif" alt="monad" width={50} height={50} className='mr-2' /> 
           <h1 className="font-bangers text-6xl md:text-7xl text-pokeyellow tracking-widest drop-shadow-[0_4px_0px_rgba(0,0,0,0.9)]">
             PokéSnap
           </h1>
